@@ -1,6 +1,6 @@
 <template>
-     <el-col :span="3">
-      <h5 class="mb-2">板块</h5>
+     <el-col :span="20">
+      <h5 class="mb-2" >板块</h5>
       <el-menu
         default-active="2"
         class="el-menu-vertical-demo h-screen"
@@ -9,32 +9,42 @@
       >
         <el-sub-menu index="1">
           <template #title>
-            <el-icon><location /></el-icon>
-            <span>Navigator One</span>
+            <el-icon><icon-menu /></el-icon>
+            <span>数的存储：补码</span>
           </template>
-          <el-menu-item-group title="Group One">
-            <el-menu-item index="1-1">item one</el-menu-item>
-            <el-menu-item index="1-2">item two</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group Two">
-            <el-menu-item index="1-3">item three</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="1-4">
-            <template #title>item four</template>
-            <el-menu-item index="1-4-1">item one</el-menu-item>
-          </el-sub-menu>
+            <el-menu-item index="1-1" @click="$emit('menu-item-selected', 'bit')">整数</el-menu-item>
+            <el-menu-item index="1-2" @click="$emit('menu-item-selected', 'float')">浮点数</el-menu-item>
         </el-sub-menu>
-        <el-menu-item index="2">
-          <el-icon><icon-menu /></el-icon>
-          <span>Navigator Two</span>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-          <el-icon><document /></el-icon>
-          <span>Navigator Three</span>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <el-icon><setting /></el-icon>
-          <span>Navigator Four</span>
+        <el-sub-menu index="2">
+          <template #title>
+            <el-icon><icon-menu /></el-icon>
+            <span>指令集</span>
+          </template>
+            <el-menu-item index="2-1" @click="$emit('menu-item-selected', 'instset')">指令集</el-menu-item>
+            <el-menu-item index="2-2" @click="$emit('menu-item-selected', 'inst')">指令</el-menu-item>
+            <el-menu-item index="2-3" @click="$emit('menu-item-selected', 'risc')">RISC-V</el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu index="3">
+          <template #title>
+            <el-icon><icon-menu /></el-icon>
+            <span>计算机底层相关</span>
+          </template>
+            <el-menu-item index="3-1" @click="$emit('menu-item-selected', 'open')">计算机启动</el-menu-item>
+            <el-menu-item index="3-2" @click="$emit('menu-item-selected', 'memo')">内存分段</el-menu-item>
+            <el-menu-item index="3-3" @click="$emit('menu-item-selected', 'compute')">处理器计算</el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu index="4">
+          <template #title>
+            <el-icon><icon-menu /></el-icon>
+            <span>编译与汇编</span>
+          </template>
+            <el-menu-item index="4-1" @click="$emit('menu-item-selected', 'compilation')">编译过程</el-menu-item>
+            <el-menu-item index="4-2" @click="$emit('menu-item-selected', 'memo')">内存分段</el-menu-item>
+            <el-menu-item index="4-3" @click="$emit('menu-item-selected', 'jump')">JUMP指令</el-menu-item>
+        </el-sub-menu>
+        <el-menu-item index="5" @click="$emit('menu-item-selected', 'intro')">
+          <el-icon><HomeFilled/></el-icon>
+          <span>主页</span>
         </el-menu-item>
       </el-menu>
     </el-col>
@@ -46,6 +56,7 @@ import {
   Location,
   Setting,
 } from '@element-plus/icons-vue'
+import { HomeFilled } from '@element-plus/icons-vue';
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -53,11 +64,11 @@ const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 </script>
-<style>
+<!-- <style>
 .h-screen{
-  height: 100vh;
+/*height: 100vh;*/
 }
 .mb-2{
   text-align: center;
 }
-</style>
+</style> -->

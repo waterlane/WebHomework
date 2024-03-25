@@ -1,20 +1,24 @@
 
-   <template><div class="bit"><h1 tabindex="-1">数在计算机里的存储方式:补码</h1>
+   <template>
+   <!-- <div class="bit"><h1 tabindex="-1">数在计算机里的存储方式:补码</h1> -->
    <!-- </br> -->
-   <el-text class="mx-1" size="extra-large">
+   <!-- <el-text class="mx-1" size="extra-large">
     -86<br><br>
-  原码：<norb class="operation">1</norb>001010110<br><br>
-  反码：<norb class="operation">1</norb>110101001<br><br>
-  补码：<norb class="operation">1</norb>110101010<br><br><norb class="operation">符号位</norb></el-text>
-   <input >
-   </div></template> 
+  原码：<norb class="operation">1</norb>1010110<br><br>
+  反码：<norb class="operation">1</norb>0101001<br><br>
+  补码：<norb class="operation">1</norb>0101010<br><br><norb class="operation">符号位</norb></el-text>
+   <input > -->
+   <!-- </div> -->
+   
+   <img src="../assets/bit.png" alt="bit" class="bit"  draggable="false" oncontextmenu="return false;">
+   </template> 
 <style>
 .bit{
-  padding-left: 5%;
-  width: 100vh;
+  /* padding-left: 5%; */
+  width: 100%;
 }
 .text{
-  padding-left: 30%;
+  /* padding-left: 30%; */
   font-size: 20px;
   line-height: 20px;
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="introduce">
-      <img src=".\img\tsxtlogo.png" class="logo">
+      <img src="../assets/tsxtlogo.png" class="logo">
     <h1>Web Homework</h1>
     <h3>Developed by 李泳道</h3>
     </div>
