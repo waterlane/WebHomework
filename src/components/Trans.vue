@@ -1,103 +1,60 @@
 <template>
-    <div>
-      <label>
-        十进制:
-        <input type="text" v-model="decimal" />
-      </label>
-      <label>
-        原码:
-        <input type="text" v-model="original" />
-      </label>
-      <label>
-        反码:
-        <input type="text" v-model="complement" />
-      </label>
-      <label>
-        补码:
-        <input type="text" v-model="twosComplement" />
-      </label>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        decimal: '',
-        original: '',
-        complement: '',
-        twosComplement: '',
-      };
-    },
-    computed: {
-      decimalComputed: {
-        get() {
-          return this.decimal;
-        },
-        set(value) {
-          this.decimal = value;
-          this.original = this.getOriginal(value);
-          this.complement = this.getComplement(this.original);
-          this.twosComplement = this.getTwosComplement(this.complement);
-        },
-      },
-      originalComputed: {
-        get() {
-          return this.original;
-        },
-        set(value) {
-          this.original = value;
-          this.decimal = this.getDecimal(value);
-          this.complement = this.getComplement(value);
-          this.twosComplement = this.getTwosComplement(this.complement);
-        },
-      },
-      complementComputed: {
-        get() {
-          return this.complement;
-        },
-        set(value) {
-          this.complement = value;
-          this.original = this.getOriginalFromComplement(value);
-          this.decimal = this.getDecimal(this.original);
-          this.twosComplement = this.getTwosComplement(value);
-        },
-      },
-      twosComplementComputed: {
-        get() {
-          return this.twosComplement;
-        },
-        set(value) {
-          this.twosComplement = value;
-          this.complement = this.getComplementFromTwosComplement(value);
-          this.original = this.getOriginalFromComplement(this.complement);
-          this.decimal = this.getDecimal(this.original);
-        },
-      },
-    },
-    methods: {
-      getOriginal(decimal) {
-        const isNegative = decimal < 0;
-        let binary = Math.abs(decimal).toString(2);
-        return isNegative ? '1' + binary.slice(1).padStart(7, '0') : binary.padStart(8, '0');
-      },
-      getComplement(original) {
-        return original.replace(/1/g, 'x').replace(/0/g, '1').replace(/x/g, '0');
-      },
-      getTwosComplement(complement) {
-        return (parseInt(complement, 2) + 1).toString(2).padStart(8, '0');
-      },
-      getDecimal(original) {
-        const isNegative = parseInt(original.charAt(0), 2);
-        let decimal = parseInt(original.slice(1), 2);
-        return isNegative ? -decimal : decimal;
-      },
-      getOriginalFromComplement(complement) {
-        return complement.replace(/1/g, 'x').replace(/0/g, '1').replace(/x/g, '0');
-      },
-      getComplementFromTwosComplement(twosComplement) {
-        return (parseInt(twosComplement, 2) - 1).toString(2).padStart(8, '0');
-      },
-    },
-  };
-  </script>
+  <div>
+    <h2 >尝试一下：</h2>
+  </div>
+  <div class="trans">
+    <!-- <input v-model="num" type="number" placeholder="请输入一个整数"> -->
+    <el-input v-model="num" style="width: 320px" placeholder="请输入一个整数" />
+    <el-button type="primary" @click="convert">转换</el-button>
+    <br>
+    <p>原码:{{ original }}</p>
+    <p >反码:{{ inverse }}</p>
+    <p>补码:{{ complement }}</p>
+    <!-- <p>二进制: {{ binary }}</p> -->
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Trans',
+  data() {
+    return {
+      num: 0,
+      // binary: '',
+      original: '00000000000000000000000000000000',
+      inverse: '00000000000000000000000000000000',
+      complement: '00000000000000000000000000000000'
+    };
+  },
+  methods: {
+    convert() {
+      let num = this.num;
+      let binary = (num >>> 0).toString(2);
+      // print(binary);
+      this.complement = binary.padStart(32, '0');
+      let reverse = (parseInt(this.complement, 2)-1).toString(2).padStart(31, '0');
+      this.inverse = num < 0 ?'1'+ reverse : this.complement;
+    this.original = num < 0 ?'1' +reverse.split('').map(bit => bit === '1' ? '0' : '1').join('') : this.complement;
+  }
+  }
+};
+</script>
+
+<style scoped>
+/* 在这里添加你的样式 */
+p{
+  font-size: large;
+  color: #606266;
+  font-family:"Gill Sans", sans-serif ;
+  /* text-align-last: justify;
+  width: 400px; */
+}
+.trans{
+  /* margin: 0 auto; */
+  width: 50%;
+  /* text-align: center; */
+}
+h2{
+  color:#303133;
+}
+</style>

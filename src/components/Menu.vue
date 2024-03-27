@@ -6,7 +6,10 @@
         class="el-menu-vertical-demo h-screen"
         @open="handleOpen"
         @close="handleClose"
-      >
+      ><el-menu-item index="5" @click="$emit('menu-item-selected', 'intro')">
+          <el-icon><HomeFilled/></el-icon>
+          <span>主页</span>
+        </el-menu-item>
         <el-sub-menu index="1">
           <template #title>
             <el-icon><icon-menu /></el-icon>
@@ -31,7 +34,17 @@
           </template>
             <el-menu-item index="3-1" @click="$emit('menu-item-selected', 'open')">计算机启动</el-menu-item>
             <el-menu-item index="3-2" @click="$emit('menu-item-selected', 'memo')">内存分段</el-menu-item>
-            <el-menu-item index="3-3" @click="$emit('menu-item-selected', 'compute')">处理器计算</el-menu-item>
+            <!-- <el-menu-item index="3-3" @click="$emit('menu-item-selected', 'compute')">处理器计算</el-menu-item> -->
+        <el-sub-menu idex=1>
+          <template #title>
+            <span>处理器I/O</span>
+          </template>
+          
+            <el-menu-item index="3-4" @click="$emit('menu-item-selected', 'io')">I/O</el-menu-item>
+            <el-menu-item index="3-5" @click="$emit('menu-item-selected', 'pio')">PIO</el-menu-item>
+            <el-menu-item index="3-6" @click="$emit('menu-item-selected', 'interrupt')">中断</el-menu-item>
+          <el-menu-item index="3-7" @click="$emit('menu-item-selected', 'dma')">DMA</el-menu-item>
+        </el-sub-menu>
         </el-sub-menu>
         <el-sub-menu index="4">
           <template #title>
@@ -39,13 +52,12 @@
             <span>编译与汇编</span>
           </template>
             <el-menu-item index="4-1" @click="$emit('menu-item-selected', 'compilation')">编译过程</el-menu-item>
-            <el-menu-item index="4-2" @click="$emit('menu-item-selected', 'memo')">内存分段</el-menu-item>
-            <el-menu-item index="4-3" @click="$emit('menu-item-selected', 'jump')">JUMP指令</el-menu-item>
+            <!-- <el-menu-item index="4-2" @click="$emit('menu-item-selected', 'memo')">内存分段</el-menu-item> -->
+            <el-menu-item index="4-2" @click="$emit('menu-item-selected', 'jump')">JUMP指令</el-menu-item>
+            <el-menu-item index="4-3" @click="$emit('menu-item-selected', 'med')">中间代码</el-menu-item>
+            <el-menu-item index="4-4" @click="$emit('menu-item-selected', 'jbc')">Java字节码</el-menu-item>
         </el-sub-menu>
-        <el-menu-item index="5" @click="$emit('menu-item-selected', 'intro')">
-          <el-icon><HomeFilled/></el-icon>
-          <span>主页</span>
-        </el-menu-item>
+        
       </el-menu>
     </el-col>
 </template>
@@ -57,6 +69,7 @@ import {
   Setting,
 } from '@element-plus/icons-vue'
 import { HomeFilled } from '@element-plus/icons-vue';
+import type { el } from 'element-plus/lib/locale/index.js';
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -64,11 +77,9 @@ const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 </script>
-<!-- <style>
-.h-screen{
-/*height: 100vh;*/
-}
+<style>
+
 .mb-2{
   text-align: center;
 }
-</style> -->
+</style>

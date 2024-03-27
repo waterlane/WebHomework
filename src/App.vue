@@ -18,7 +18,13 @@
   <Memo v-if="ShowMemo"/>
   <Compilation v-if="ShowComp"/>
   <JUMP v-if="ShowJump"/>
-  <!-- <Trans v-if="ShowBit"></Trans> -->
+  <IO v-if="ShowIO"/>
+  <PIO v-if="ShowPIO"/>
+  <Interrupt v-if="ShowInterrupt"/>
+  <DMA v-if="ShowDMA"/>
+  <Trans v-if="ShowBit"></Trans>
+  <Intermediate v-if="ShowMed"></Intermediate>
+  <JavaBytecode v-if="ShowJBC"></JavaBytecode>
         </el-main>
         <!-- <el-footer>Footer</el-footer> -->
       </el-container>
@@ -50,6 +56,12 @@ import Memo from "./components/Memo.vue"
 import { th } from "element-plus/es/locale/index.mjs"
 import Compilation from "./components/Compilation.vue"
 import JUMP from "./components/JUMP.vue"
+import IO from "./components/IO.vue"
+import PIO from "./components/PIO.vue"
+import Interrupt from "./components/Interrupt.vue"
+import DMA from "./components/DMA.vue"
+import Intermediate from "./components/intermediate.vue"
+import JavaBytecode from "./components/JavaBytecode.vue"
 export default{
   components:{
 Menu,
@@ -63,7 +75,13 @@ RISC,
 Open,
 Memo,
 Compilation,
-JUMP
+JUMP,
+IO,
+PIO,
+Interrupt,
+DMA,
+Intermediate,
+JavaBytecode
   },
   
     data(){
@@ -71,14 +89,19 @@ JUMP
         IntroMsg : true,//介绍界面
         ShowBit: false,//二进制、浮点数、指令集
         ShowFloat:false,//浮点数
-        ShowMemo:false,//内存为中心
+        ShowMemo:false,//内存分段
         ShowJump:false,//JUMP
         ShowComp:false,//编译原理
         ShowInstSet:false,//指令集
         ShowRISC:false,//RISC-V
         ShowInst:false,//指令
         ShowMed:false,//中间代码
-        ShowOpen:false//x86计算机开机地址规范 开机过程
+        ShowJBC:false,//Java字节码
+        ShowOpen:false,//x86计算机开机地址规范 开机过程
+        ShowIO:false,//I/O
+        ShowPIO:false,//PIO
+        ShowInterrupt:false,//中断
+        ShowDMA:false//DMA
       }
     },
     methods: {
@@ -92,8 +115,13 @@ JUMP
     this.ShowInst = menuItem === 'inst';
     this.ShowInstSet = menuItem === 'instset';
     this.ShowRISC = menuItem === 'risc';
-    this.ShowMed = false;
+    this.ShowMed = menuItem === 'med';
+    this.ShowJBC = menuItem === 'jbc';
     this.ShowOpen = menuItem === 'open';
+    this.ShowIO = menuItem === 'io';
+    this.ShowPIO = menuItem === 'pio';
+    this.ShowInterrupt = menuItem === 'interrupt'; 
+    this.ShowDMA = menuItem === 'dma';
   }
 }
   
